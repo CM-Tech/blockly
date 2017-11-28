@@ -150,6 +150,37 @@ Blockly.createDom_ = function(container, options) {
        'k1': 0, 'k2': 1, 'k3': 1, 'k4': 0}, embossFilter);
   options.embossFilterId = embossFilter.id;
   /*
+    <filter id="blocklyBlockEmbossFilter837493">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1" result="blur" />
+      <feSpecularLighting in="blur" surfaceScale="1" specularConstant="0.2"
+                          specularExponent="10" lighting-color="#eee"
+                          result="specOut">
+        <fePointLight x="-10000" y="-10000" z="10000" />
+      </feSpecularLighting>
+      <feComposite in="specOut" in2="SourceAlpha" operator="in"
+                   result="specOut" />
+      <feComposite in="SourceGraphic" in2="specOut" operator="arithmetic"
+                   k1="0" k2="1" k3="1" k4="0" />
+    </filter>
+  */
+  var blockEmbossFilter = Blockly.utils.createSvgElement('filter',
+  {'id': 'blocklyBlockEmbossFilter' + rnd}, defs);
+Blockly.utils.createSvgElement('feGaussianBlur',
+  {'in': 'SourceAlpha', 'stdDeviation': 1, 'result': 'blur'}, blockEmbossFilter);
+var feBlockSpecularLighting = Blockly.utils.createSvgElement('feSpecularLighting',
+  {'in': 'blur', 'surfaceScale': 1, 'specularConstant': 0.2,
+   'specularExponent': 10, 'lighting-color': '#eee', 'result': 'specOut'},
+   blockEmbossFilter);
+Blockly.utils.createSvgElement('fePointLight',
+  {'x': -10000, 'y': -10000, 'z': 10000}, feBlockSpecularLighting);
+Blockly.utils.createSvgElement('feComposite',
+  {'in': 'specOut', 'in2': 'SourceAlpha', 'operator': 'in',
+   'result': 'specOut'}, blockEmbossFilter);
+Blockly.utils.createSvgElement('feComposite',
+  {'in': 'SourceGraphic', 'in2': 'specOut', 'operator': 'arithmetic',
+   'k1': 0, 'k2': 1, 'k3': 1, 'k4': 0}, blockEmbossFilter);
+options.blockEmbossFilterId = blockEmbossFilter.id;
+  /*
     <pattern id="blocklyDisabledPattern837493" patternUnits="userSpaceOnUse"
              width="10" height="10">
       <rect width="10" height="10" fill="#aaa" />

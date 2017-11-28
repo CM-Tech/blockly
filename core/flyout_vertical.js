@@ -254,7 +254,7 @@ Blockly.VerticalFlyout.prototype.layout_ = function(contents, gaps) {
       block.render();
       var root = block.getSvgRoot();
       var blockHW = block.getHeightWidth();
-      block.moveBy(cursorX, cursorY);
+      block.moveBy(cursorX+(block.outputConnection ? block.height / 2 : 0), cursorY);
 
       var rect = this.createRect_(block,
           this.RTL ? cursorX - blockHW.width : cursorX, cursorY, blockHW, i);

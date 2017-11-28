@@ -622,6 +622,7 @@ Blockly.Flyout.prototype.createBlock = function(originalBlock) {
   } else {
     this.filterForCapacity_();
   }
+  
   return newBlock;
 };
 
@@ -801,7 +802,6 @@ Blockly.Flyout.prototype.placeNewBlock_ = function(oldBlock) {
 
   // The position of the old block in main workspace coordinates.
   var finalOffsetMainWs = finalOffsetPixels.scale(1 / targetWorkspace.scale);
-
   block.moveBy(finalOffsetMainWs.x, finalOffsetMainWs.y);
   return block;
 };
