@@ -397,18 +397,18 @@ Blockly.Toolbox.prototype.addColour_ = function(opt_tree) {
   var children = tree.getChildren();
   for (var i = 0, child; child = children[i]; i++) {
     var element = child.getRowElement();
+
     if (element) {
       if (this.hasColours_) {
-        var border = '8px solid ' + (child.hexColour || '#ddd');
+        var border = '4px solid ' + (child.hexColour || '#ddd');
       } else {
         var border = 'none';
       }
-      if (this.workspace_.RTL) {
-        element.style.borderRight = border;
-      } else {
-        element.style.borderLeft = border;
-      }
+      element.style.color=(child.hexColour || '#ddd');
+      element.style.borderBottom = border;
     }
+    child.element_.style.backgroundColor="white";
+    //child.element_.style.transform="rotateZ(90deg)";
     this.addColour_(child);
   }
 };

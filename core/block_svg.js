@@ -74,10 +74,10 @@ Blockly.BlockSvg = function(workspace, prototypeName, opt_id) {
    */
   this.svgPath_ = Blockly.utils.createSvgElement('path', {'class': 'blocklyPath'},
     this.svgGroup_);
-  if (workspace.options.blockEmbossFilterId) {
+  /*if (workspace.options.blockEmbossFilterId) {
     this.svgPath_.setAttribute('filter',
       'url(#' + workspace.options.blockEmbossFilterId + ')');
-  }
+  }*/
 
   /**
    * @type {SVGElement}
@@ -1066,6 +1066,9 @@ Blockly.BlockSvg.prototype.updateColour = function() {
   this.svgPathLight_.style.display = 'none';
   this.svgPathDark_.style.display = 'none';
   this.svgPath_.setAttribute('fill', hexColour);
+  var hexDark = goog.color.rgbArrayToHex(goog.color.darken(rgb, 0.5));
+  this.svgPath_.setAttribute('stroke', hexDark);
+  this.svgPath_.setAttribute('stroke-width', "2px");
 
   var icons = this.getIcons();
   for (var i = 0; i < icons.length; i++) {
