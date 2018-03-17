@@ -367,6 +367,7 @@ Blockly.WorkspaceSvg.prototype.createDom = function(opt_backgroundClass) {
       this.svgBackground_.style.fill =
           'url(#' + this.grid_.getPatternId() + ')';
     }
+    this.svgBackground_.style.fill="#eaeaea";
   }
   /** @type {SVGElement} */
   this.svgBlockCanvas_ = Blockly.utils.createSvgElement('g',
