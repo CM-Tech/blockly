@@ -76,7 +76,7 @@ Blockly.FieldColour.prototype.init = function() {
   this.borderRect_ = Blockly.utils.createSvgElement('circle',
       {'cx': radius,
        'cy': radius,
-       'r': radius+Blockly.BlockSvg.SEP_SPACE_Y/2-1}, this.fieldGroup_, this.sourceBlock_.workspace);
+       'r': radius+Blockly.BlockSvg.SEP_SPACE_Y/2-0.5}, this.fieldGroup_, this.sourceBlock_.workspace);
   this.borderRect_.style['fillOpacity'] = 1;
   this.setValue(this.getValue());
   this.fieldGroup_.querySelector("rect").style['fillOpacity'] = 0;
