@@ -51,6 +51,35 @@ Blockly.FieldNumber = function(opt_value, opt_min, opt_max, opt_precision,
   this.setConstraints(opt_min, opt_max, opt_precision);
 };
 goog.inherits(Blockly.FieldNumber, Blockly.FieldTextInput);
+Blockly.FieldNumber.prototype.init = function() {
+  Blockly.FieldNumber.superClass_.init.call(this);
+  var radius=11;
+  this.radius=radius;
+  this.borderRect_ = Blockly.utils.createSvgElement('circle',
+      {'cx': radius,
+       'cy': radius,
+       'r': radius+Blockly.BlockSvg.SEP_SPACE_Y/2-1}, this.fieldGroup_, this.sourceBlock_.workspace);
+  this.borderRect_.style['fillOpacity'] = 0;
+  //this.setValue(this.getValue());
+  this.fieldGroup_.querySelector("rect").style['fillOpacity'] = 0;
+  this.fieldGroup_.querySelector("text").style['fill'] = "white";
+
+  this.fieldGroup_.querySelector("text").style.transform = "translate(0,"+(10)+")";
+};
+
+Blockly.FieldNumber.prototype.updateWidth = function() {
+  var width = Blockly.Field.getCachedWidth(this.textElement_);
+  if (this.borderRect_) {
+    this.borderRect_.setAttribute('width',
+        width + Blockly.BlockSvg.SEP_SPACE_X);
+  }
+  this.size_.width = width;
+  this.size_.height = width+Blockly.BlockSvg.SEP_SPACE_Y;
+  console.log(this.sourceBlock_.getSvgRoot().querySelector("text"));
+//  console.log(this.sourceBlock_.getSvgRoot().querySelector("text").tran=10);
+  //console.log(this.fieldGroup_.querySelector("text").style);
+this.sourceBlock_.getSvgRoot().querySelector("text").setAttribute('y',Math.max(this.size_.height/2,12));//.style.transform = "translate(0,"+(this.size_.height/2)+")";
+};
 
 /**
  * Set the maximum, minimum and precision constraints on this field.

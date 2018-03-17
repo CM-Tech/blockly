@@ -1068,7 +1068,7 @@ Blockly.BlockSvg.prototype.updateColour = function() {
   this.svgPath_.setAttribute('fill', hexColour);
   var hexDark = goog.color.rgbArrayToHex(goog.color.darken(rgb, 0.5));
   this.svgPath_.setAttribute('stroke', hexDark);
-  this.svgPath_.setAttribute('stroke-width', "2px");
+  this.svgPath_.setAttribute('stroke-width', "1px");
 
   var icons = this.getIcons();
   for (var i = 0; i < icons.length; i++) {

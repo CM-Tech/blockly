@@ -731,7 +731,7 @@ Blockly.BlockSvg.prototype.renderDrawRight_ = function(steps, highlightSteps,
 
               //console.log("N"+questionableInput.constructor);
               //console.log("C",questionableInput);
-              if(questionableInput.constructor==Blockly.FieldColour){
+              if(questionableInput.constructor==Blockly.FieldColour||questionableInput.constructor==Blockly.FieldNumber){
                addExtraForArc=false;
                 //console.log("color",questionableInput);
               }
@@ -740,7 +740,7 @@ Blockly.BlockSvg.prototype.renderDrawRight_ = function(steps, highlightSteps,
 
               //console.log("N"+questionableInput.constructor);
               //console.log("C",questionableInput);
-              if(questionableInputB.constructor==Blockly.FieldColour){
+              if(questionableInputB.constructor==Blockly.FieldColour||questionableInputB.constructor==Blockly.FieldNumber){
                addBefore=false;
                 //console.log("color",questionableInput);
               }
@@ -769,7 +769,7 @@ Blockly.BlockSvg.prototype.renderDrawRight_ = function(steps, highlightSteps,
 
               //console.log("N"+questionableInput.constructor);
               //console.log("C",questionableInput);
-              if(questionableInputB.constructor==Blockly.FieldColour){
+              if(questionableInputB.constructor==Blockly.FieldColour||questionableInputB.constructor==Blockly.FieldNumber){
                addBefore=false;
                 //console.log("color",questionableInput);
               }
