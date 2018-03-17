@@ -71,8 +71,15 @@ Blockly.FieldColour.prototype.columns_ = 0;
  */
 Blockly.FieldColour.prototype.init = function() {
   Blockly.FieldColour.superClass_.init.call(this);
+  var radius=11;
+  this.radius=radius;
+  this.borderRect_ = Blockly.utils.createSvgElement('circle',
+      {'cx': radius,
+       'cy': radius,
+       'r': radius+Blockly.BlockSvg.SEP_SPACE_Y/2-1}, this.fieldGroup_, this.sourceBlock_.workspace);
   this.borderRect_.style['fillOpacity'] = 1;
   this.setValue(this.getValue());
+  this.fieldGroup_.querySelector("rect").style['fillOpacity'] = 0;
 };
 
 /**
@@ -197,6 +204,22 @@ Blockly.FieldColour.prototype.showEditor_ = function() {
         }
       });
 };
+
+
+
+/**
+ * Updates thw width of the field. This calls getCachedWidth which won't cache
+ * the approximated width on IE/Edge when `getComputedTextLength` fails. Once
+ * it eventually does succeed, the result will be cached.
+ **/
+Blockly.FieldColour.prototype.updateWidth = function() {
+  var width =this.radius*2;
+
+  this.size_.width = width;
+
+  this.size_.height = width+Blockly.BlockSvg.SEP_SPACE_Y;
+};
+
 
 /**
  * Create a color picker widget and render it inside the widget div.

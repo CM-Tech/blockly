@@ -521,7 +521,7 @@ Blockly.Css.CONTENT = [
   '}',
 
   '.blocklyTreeRoot {',
-    'padding: 4px 0;',
+    'padding: 0px 0;',
   '}',
 
   '.blocklyTreeRoot:focus {',
@@ -538,7 +538,7 @@ Blockly.Css.CONTENT = [
 
   '.blocklyHorizontalTree {',
     'float: left;',
-    'margin: 1px 5px 8px 0;',
+    'margin: 0px 0px 0px 0;',
   '}',
 
   '.blocklyHorizontalTreeRtl {',
