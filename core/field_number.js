@@ -63,8 +63,9 @@ Blockly.FieldNumber.prototype.init = function() {
   //this.setValue(this.getValue());
   this.fieldGroup_.querySelector("rect").style['fillOpacity'] = 0;
   this.fieldGroup_.querySelector("text").style['fill'] = "white";
+  this.fieldGroup_.querySelector("text").style['text-anchor'] = "middle";
 
-  this.fieldGroup_.querySelector("text").style.transform = "translate(0,"+(10)+")";
+  //this.fieldGroup_.querySelector("text").style.transform = "translate(0,"+(10)+")";
 };
 
 Blockly.FieldNumber.prototype.updateWidth = function() {
@@ -73,12 +74,14 @@ Blockly.FieldNumber.prototype.updateWidth = function() {
     this.borderRect_.setAttribute('width',
         width + Blockly.BlockSvg.SEP_SPACE_X);
   }
+  width= Math.max(width,18);
   this.size_.width = width;
   this.size_.height = width+Blockly.BlockSvg.SEP_SPACE_Y;
-  console.log(this.sourceBlock_.getSvgRoot().querySelector("text"));
+//  console.log(this.sourceBlock_.getSvgRoot().querySelector("text"));
 //  console.log(this.sourceBlock_.getSvgRoot().querySelector("text").tran=10);
   //console.log(this.fieldGroup_.querySelector("text").style);
 this.sourceBlock_.getSvgRoot().querySelector("text").setAttribute('y',Math.max(this.size_.height/2,12));//.style.transform = "translate(0,"+(this.size_.height/2)+")";
+this.sourceBlock_.getSvgRoot().querySelector("text").setAttribute('x',this.size_.width/2,12);//.style.transform = "translate(0,"+(this.size_.height/2)+")";
 };
 
 /**
