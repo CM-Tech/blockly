@@ -73,6 +73,10 @@ Blockly.BlockSvg.NOTCH_WIDTH = 30;
  * @const
  */
 Blockly.BlockSvg.CORNER_RADIUS = 8;
+
+
+Blockly.BlockSvg.CORNER_RADIUS_OUT=Blockly.BlockSvg.CORNER_RADIUS+1;
+
 /**
  * Do blocks with no previous or output connections have a 'hat' on top?
  * @const
@@ -207,21 +211,21 @@ Blockly.BlockSvg.TOP_LEFT_CORNER_HIGHLIGHT =
  */
 Blockly.BlockSvg.INNER_TOP_LEFT_CORNER =
     Blockly.BlockSvg.NOTCH_PATH_RIGHT + ' h -' +
-    (Blockly.BlockSvg.NOTCH_WIDTH - 15 - Blockly.BlockSvg.CORNER_RADIUS) +
-    ' a ' + Blockly.BlockSvg.CORNER_RADIUS + ',' +
-    Blockly.BlockSvg.CORNER_RADIUS + ' 0 0,0 -' +
-    Blockly.BlockSvg.CORNER_RADIUS + ',' +
-    Blockly.BlockSvg.CORNER_RADIUS;
+    (Blockly.BlockSvg.NOTCH_WIDTH - 14 - Blockly.BlockSvg.CORNER_RADIUS_OUT) +
+    ' a ' + (Blockly.BlockSvg.CORNER_RADIUS_OUT) + ',' +
+    Blockly.BlockSvg.CORNER_RADIUS_OUT + ' 0 0,0 -' +
+    Blockly.BlockSvg.CORNER_RADIUS_OUT + ',' +
+    Blockly.BlockSvg.CORNER_RADIUS_OUT;
 /**
  * SVG path for drawing the bottom-left corner of a statement input.
  * Includes the rounded inside corner.
  * @const
  */
 Blockly.BlockSvg.INNER_BOTTOM_LEFT_CORNER =
-    'a ' + Blockly.BlockSvg.CORNER_RADIUS + ',' +
-    Blockly.BlockSvg.CORNER_RADIUS + ' 0 0,0 ' +
-    Blockly.BlockSvg.CORNER_RADIUS + ',' +
-    Blockly.BlockSvg.CORNER_RADIUS;
+    'a ' + Blockly.BlockSvg.CORNER_RADIUS_OUT + ',' +
+    Blockly.BlockSvg.CORNER_RADIUS_OUT + ' 0 0,0 ' +
+    Blockly.BlockSvg.CORNER_RADIUS_OUT + ',' +
+    Blockly.BlockSvg.CORNER_RADIUS_OUT;
 /**
  * SVG path for drawing highlight on the top-left corner of a statement
  * input in RTL.
@@ -966,11 +970,11 @@ Blockly.BlockSvg.prototype.renderDrawRight_ = function(steps, highlightSteps,
       }
       this.renderFields_(input.fieldRow, fieldX, fieldY);
       cursorX = inputRows.statementEdge + Blockly.BlockSvg.NOTCH_WIDTH;
-      steps.push('H', cursorX);
+      steps.push('H', cursorX+1);
       steps.push(Blockly.BlockSvg.INNER_TOP_LEFT_CORNER);
       steps.push('v', row.height - 2 * Blockly.BlockSvg.CORNER_RADIUS);
       steps.push(Blockly.BlockSvg.INNER_BOTTOM_LEFT_CORNER);
-      steps.push('H', inputRows.rightEdge);
+      steps.push('H', inputRows.rightEdge-1);
       if (this.RTL) {
         highlightSteps.push('M',
             (cursorX - Blockly.BlockSvg.NOTCH_WIDTH +
