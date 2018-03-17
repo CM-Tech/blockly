@@ -438,13 +438,13 @@ Blockly.BlockSvg.prototype.renderCompute_ = function(iconWidth) {
       input.renderWidth = Math.max(input.renderWidth, bBox.width);
     }
     // Blocks have a one pixel shadow that should sometimes overhang.
-    if (!isInline && i == inputList.length - 1) {
+    if (!isInline && inputList[i ] && inputList[i ].type == Blockly.NEXT_STATEMENT) {
       // Last value input should overhang.
-      input.renderHeight--;
+      input.renderHeight+=-5;
     } else if (!isInline && input.type == Blockly.INPUT_VALUE &&
         inputList[i + 1] && inputList[i + 1].type == Blockly.NEXT_STATEMENT) {
       // Value input above statement input should overhang.
-      input.renderHeight--;
+    //  input.renderHeight--;
     }
 
     row.height = Math.max(row.height, input.renderHeight);
@@ -968,11 +968,13 @@ Blockly.BlockSvg.prototype.renderDrawRight_ = function(steps, highlightSteps,
           fieldX += fieldRightX / 2;
         }
       }
+
       this.renderFields_(input.fieldRow, fieldX, fieldY);
       cursorX = inputRows.statementEdge + Blockly.BlockSvg.NOTCH_WIDTH;
       steps.push('H', cursorX+1);
       steps.push(Blockly.BlockSvg.INNER_TOP_LEFT_CORNER);
       steps.push('v', row.height - 2 * Blockly.BlockSvg.CORNER_RADIUS);
+
       steps.push(Blockly.BlockSvg.INNER_BOTTOM_LEFT_CORNER);
       steps.push('H', inputRows.rightEdge-1);
       if (this.RTL) {
@@ -1003,9 +1005,13 @@ Blockly.BlockSvg.prototype.renderDrawRight_ = function(steps, highlightSteps,
       if (input.connection.isConnected()) {
         this.width = Math.max(this.width, inputRows.statementEdge +
             input.connection.targetBlock().getHeightWidth().width);
+//            cursorY += -1;
+
       }
-      if (y == inputRows.length - 1 ||
+      cursorY += 2;
+      if (y == inputRows.length - 1||
           inputRows[y + 1].type == Blockly.NEXT_STATEMENT) {
+        //    cursorY += 1;
         // If the final input is a statement stack, add a small row underneath.
         // Consecutive statement stacks are also separated by a small divider.
         steps.push('v', Blockly.BlockSvg.SEP_SPACE_Y);
@@ -1014,6 +1020,9 @@ Blockly.BlockSvg.prototype.renderDrawRight_ = function(steps, highlightSteps,
         }
         cursorY += Blockly.BlockSvg.SEP_SPACE_Y;
       }
+        if (y == inputRows.length - 1){
+      //cursorY += 1;
+    }
     }
     cursorY += row.height;
   }
@@ -1038,9 +1047,9 @@ Blockly.BlockSvg.prototype.renderDrawRight_ = function(steps, highlightSteps,
 Blockly.BlockSvg.prototype.renderDrawBottom_ =
     function(steps, highlightSteps, cursorY) {
   /* eslint-disable indent */
-  this.height += cursorY ;  // Add one for the shadow.
+  this.height += cursorY;  // Add one for the shadow.
   if (this.nextConnection) {
-    steps.push('H', (Blockly.BlockSvg.NOTCH_WIDTH + (this.RTL ? 0.5 : - 0.5)) +
+    steps.push('H', (Blockly.BlockSvg.NOTCH_WIDTH) +
         ' ' + Blockly.BlockSvg.NOTCH_PATH_RIGHT);
     // Create next block connection.
     var connectionX;
@@ -1050,7 +1059,7 @@ Blockly.BlockSvg.prototype.renderDrawBottom_ =
       connectionX = Blockly.BlockSvg.NOTCH_WIDTH;
     }
     this.nextConnection.setOffsetInBlock(connectionX, cursorY + 1);
-    this.height += 4;  // Height of tab.
+    this.height += 5;  // Height of tab.
   }
 
   // Should the bottom-left corner be rounded or square?
