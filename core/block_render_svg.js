@@ -846,6 +846,7 @@ Blockly.BlockSvg.prototype.renderDrawRight_ = function(steps, highlightSteps,
 
     }else{
       cursorX+= -Blockly.BlockSvg.SEP_SPACE_X+Blockly.BlockSvg.SEP_SPACE_Y/2;
+      this.width+= -Blockly.BlockSvg.SEP_SPACE_X+Blockly.BlockSvg.SEP_SPACE_Y/2;
 
     }
       this.width = Math.max(this.width, cursorX);
